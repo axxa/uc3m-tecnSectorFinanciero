@@ -94,19 +94,22 @@ public class PracticeLatency3
             // Execute the operation the required number of times
             for(int i = 0; i < NUM_EXECUTIONS; i++)
             {
-                //marcamos el starttime antes de realizar executeOp()
-        	    long startTime = System.nanoTime();
+                
                 // Wait until there is the time for the next call
                 while(System.currentTimeMillis() < nextCallTime);
-
+                
+                //marcamos el starttime antes de realizar executeOp()
+        	    long startTime = System.nanoTime();
                 // Execute the operation, it will sleep for 10 milliseconds
                 syncOpSimulator.executeOp();
-
+                
+                //marca el endtime despues de finalizado el executeOp()
+                long endTime = System.nanoTime();
+                
                 // Calculate the next time to call execute op
                 nextCallTime += expectedTimeBetweenCalls;
 
-                //marca el endtime despues de finalizado el executeOp()
-                long endTime = System.nanoTime();
+                
                 //se guardan los datos del histograma
                 this.histogram.recordValue(endTime - startTime);
             }
