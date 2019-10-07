@@ -47,7 +47,7 @@ public class PracticeLatency1
         }
 
         // TODO Show the percentile distribution of the latency calculation of each executeOp call        
-        histogram.outputPercentileDistribution(System.out, 1000000.0);
+        histogram.outputPercentileDistribution(System.out, 1000.0);
 
 
     }
