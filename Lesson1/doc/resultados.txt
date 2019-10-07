@@ -213,7 +213,7 @@ Termina runCalculations
 
 
 ******************************************************************************************PracticeLatency3
-
+Valores en milisegundos
        Value     Percentile TotalCount 1/(1-Percentile)
 
         9.96 0.000000000000         14           1.00
