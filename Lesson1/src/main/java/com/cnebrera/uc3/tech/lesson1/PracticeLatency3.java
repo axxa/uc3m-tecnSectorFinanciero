@@ -85,7 +85,6 @@ public class PracticeLatency3
         @Override
         public void run()
         {
-            //startTime = System.nanoTime();
             // Calculate the expected time between consecutive calls, considering the number of executions per second
             final long expectedTimeBetweenCalls = TimeUnit.SECONDS.toMillis(1) / MAX_EXPECTED_EXECUTIONS_PER_SECOND;
 
@@ -113,7 +112,6 @@ public class PracticeLatency3
             }
 
             finished = true;
-            //endTime = System.nanoTime();
         }
 
         /** Wait for the runner execution to complete */
