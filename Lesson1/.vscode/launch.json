@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PracticeLatency3",
+            "request": "launch",
+            "mainClass": "com.cnebrera.uc3.tech.lesson1.PracticeLatency3",
+            "projectName": "Lesson1"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PracticeLatency2",
+            "request": "launch",
+            "mainClass": "com.cnebrera.uc3.tech.lesson1.PracticeLatency2",
+            "projectName": "Lesson1"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PracticeLatency1",
+            "request": "launch",
+            "mainClass": "com.cnebrera.uc3.tech.lesson1.PracticeLatency1",
+            "projectName": "Lesson1"
+        }
+    ]
+}
