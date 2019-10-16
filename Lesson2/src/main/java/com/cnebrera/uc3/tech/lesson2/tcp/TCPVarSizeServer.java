@@ -4,6 +4,7 @@ import com.cnebrera.uc3.tech.lesson2.util.VariableSizeMessage;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 
@@ -15,10 +16,11 @@ public class TCPVarSizeServer
     public static void main(String argv[]) throws Exception
     {
         // TODO 1 create the acceptor socket
-
+        final ServerSocket welcomeSocket = new ServerSocket(6789);
         // TODO 2 accept a connection and get the connection socket
-
-        // TODO 3 send the messages to the connected client socket
+        final Socket connectionSocket = welcomeSocket.accept();
+        // TODO 3 send the messages to the connected client socket 
+        sendMessagesToClient(connectionSocket);
     }
 
     /**
@@ -42,7 +44,7 @@ public class TCPVarSizeServer
             headerBuffer.clear();
 
             // Generate random message
-            final VariableSizeMessage rndMsg = VariableSizeMessage.generateRandomMsg(8);
+            final VariableSizeMessage rndMsg = VariableSizeMessage.generateRandomMsg(80000);
 
             // Convert to binary
             final ByteBuffer binaryMessage = rndMsg.toBinary();
@@ -56,11 +58,12 @@ public class TCPVarSizeServer
             System.out.println("About to send msg of size " + binaryMessage.position() + headerBuffer.position());
 
             // TODO 4 Write the header with the message size
-
+            outputStream.write(headerBuffer.array());
             // TODO 5 Write the contents
-
+            outputStream.write(binaryMessage.array(), 0, binaryMessage.limit());
             // TODO 6 Force it to be sent without batching
-
+            outputStream.flush();
+            
             System.out.println("Message sent: " + rndMsg.toString());
 
             // Wait a bit

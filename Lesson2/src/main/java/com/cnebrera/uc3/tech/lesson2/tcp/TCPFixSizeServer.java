@@ -51,6 +51,7 @@ public class TCPFixSizeServer
             outputStream.write(sendBuffer.array());
             // TODO 5 Flush to force the message to be send without batching
             outputStream.flush();
+            
             System.out.println("Message sent: " + rndMsg.toString());
 
             // Wait a bit before sending the next message

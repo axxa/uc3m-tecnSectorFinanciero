@@ -4,22 +4,24 @@ import com.cnebrera.uc3.tech.lesson2.util.VariableSizeMessage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.Socket;
 import java.nio.ByteBuffer;
 
 /**
- * TCP client that read messages of variable size from a server
+ * TCP client that read messages of variable size from a server 
  */
 public class TCPVarSizeClient
 {
     public static void main(String argv[]) throws Exception
     {
         // TODO 1 Create the client socket
-
+        final Socket clientSocket = new Socket("localhost", 6789);
         // TODO 2 Get the input stream
-
+        final InputStream inputStream = clientSocket.getInputStream();
         while(true)
         {
             // TODO 3 Call send messages with the input stream
+            readMessages(inputStream);
         }
     }
 
@@ -34,8 +36,9 @@ public class TCPVarSizeClient
         final byte [] header = new byte[4];
 
         // TODO 4 Wait to have at least the header
-
+        while(inputStream.available() < 4);
         // TODO 5 Read the header
+        inputStream.read(header);
 
         final int msgSize = ByteBuffer.wrap(header).getInt();
 
@@ -45,9 +48,9 @@ public class TCPVarSizeClient
         final byte [] msgBytes = new byte[msgSize];
 
         // TODO 6 Wait for the whole message to be ready
-
+        while(inputStream.available() < msgBytes.length);
         // TODO 7 read the message bytes
-
+        inputStream.read(msgBytes);
         // Create the message
         final VariableSizeMessage msg = VariableSizeMessage.readMsgFromBinary(msgSize, ByteBuffer.wrap(msgBytes));
 
