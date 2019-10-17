@@ -12,6 +12,7 @@ import java.nio.ByteBuffer;
  */
 public class TCPFixSizeClient
 {
+    
     public static void main(String argv[]) throws Exception
     {
         // TODO 1 Create the client socket

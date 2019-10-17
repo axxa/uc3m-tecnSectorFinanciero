@@ -3,6 +3,7 @@ package com.cnebrera.uc3.tech.lesson2.mcast;
 import com.cnebrera.uc3.tech.lesson2.util.VariableSizeMessage;
 
 import java.io.IOException;
+import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
@@ -27,12 +28,15 @@ public class McastClient
         final ByteBuffer receiveBuffer = ByteBuffer.allocate(1024);
 
         // TODO 1 Create a new multicast socket
-
+        final MulticastSocket clientSocket = new MulticastSocket(PORT);
         // TODO 2 Joint the Multicast group given by the multicast address
+        clientSocket.joinGroup(address);
 
         while (true)
         {
             // TODO 3 Call receiveMessage with the buffer and the socket
+            receiveMessage(receiveBuffer, clientSocket);
+
         }
     }
 
@@ -49,10 +53,13 @@ public class McastClient
         receiveBuffer.clear();
 
         // TODO 4 Create a datagram to receive the next message
+        final DatagramPacket msgPacket = new DatagramPacket(receiveBuffer.array(), receiveBuffer.capacity());
 
         // TODO 5 Receive the next message
+        clientSocket.receive(msgPacket);
 
         // TODO 6 Set the limits of the buffer with the received datagram information
+        receiveBuffer.limit(msgPacket.getLength());
 
         // Deserialize the message
         final VariableSizeMessage msg = VariableSizeMessage.readMsgFromBinary(receiveBuffer.limit(), receiveBuffer);
