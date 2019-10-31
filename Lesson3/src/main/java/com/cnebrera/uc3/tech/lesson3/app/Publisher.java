@@ -1,18 +1,3 @@
-/*
- * Copyright 2015 Kaazing Corporation
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.cnebrera.uc3.tech.lesson3.app;
 
 import java.util.concurrent.TimeUnit;
@@ -24,9 +9,6 @@ import org.agrona.concurrent.UnsafeBuffer;
 import io.aeron.Aeron;
 import io.aeron.Publication;
 
-/**
- * A very simple Aeron publisher application which publishes a fixed size message on a fixed channel and stream.
- */
 public class Publisher
 {
     public static void main(final String[] args) throws Exception
@@ -59,7 +41,7 @@ public class Publisher
             buffer.putBytes(0, messageBytes);
 
             // Wait for 5 seconds to connect to a subscriber
-            /*
+            
             final long deadlineNs = System.nanoTime() + TimeUnit.SECONDS.toNanos(5);
             while (!publication.isConnected())
             {
@@ -71,7 +53,7 @@ public class Publisher
 
                 Thread.sleep(1);
             }
-            */
+            
             // Try to publish the buffer. 'offer' is a non-blocking call.
             // If it returns less than 0, the message was not sent, and the offer should be retried.
             final long result = publication.offer(buffer, 0, messageBytes.length);
