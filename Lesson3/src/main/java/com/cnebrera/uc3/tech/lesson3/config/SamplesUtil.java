@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cnebrera.uc3.tech.lesson3.app;
+package com.cnebrera.uc3.tech.lesson3.config;
 
 //import static io.aeron.driver.Configuration.DEFAULT_IDLE_STRATEGY;
 import static java.nio.channels.FileChannel.MapMode.READ_ONLY;
@@ -81,7 +81,7 @@ public class SamplesUtil
     public static Consumer<Subscription> subscriberLoop(
         final FragmentHandler fragmentHandler, final int limit, final AtomicBoolean running)
     {
-        final IdleStrategy idleStrategy = SampleConfiguration.newIdleStrategy();
+        final IdleStrategy idleStrategy = AeronConfiguration.newIdleStrategy();
 
         return subscriberLoop(fragmentHandler, limit, running, idleStrategy);
     }
