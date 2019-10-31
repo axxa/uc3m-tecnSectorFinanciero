@@ -22,6 +22,6 @@ public class AeronConfiguration
 
     public static IdleStrategy newIdleStrategy()
     {
-        return SamplesUtil.newIdleStrategy(IDLE_STRATEGY_NAME);
+        return AeronUtil.newIdleStrategy(IDLE_STRATEGY_NAME);
     }
 }
