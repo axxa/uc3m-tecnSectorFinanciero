@@ -1,5 +1,7 @@
 package com.cnebrera.uc3.tech.lesson3.config;
 
+import com.cnebrera.uc3.tech.lesson3.util.AeronUtil;
+
 import org.agrona.concurrent.IdleStrategy;
 
 public class AeronConfiguration

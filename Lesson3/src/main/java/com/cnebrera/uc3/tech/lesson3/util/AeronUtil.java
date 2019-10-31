@@ -1,4 +1,4 @@
-package com.cnebrera.uc3.tech.lesson3.config;
+package com.cnebrera.uc3.tech.lesson3.util;
 
 import java.util.concurrent.TimeUnit;
 
