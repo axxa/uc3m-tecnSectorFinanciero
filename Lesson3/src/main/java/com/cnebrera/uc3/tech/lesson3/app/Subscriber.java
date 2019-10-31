@@ -1,5 +1,8 @@
 package com.cnebrera.uc3.tech.lesson3.app;
 
+import static com.cnebrera.uc3.tech.lesson3.config.AeronConfiguration.CHANNEL;
+import static com.cnebrera.uc3.tech.lesson3.config.AeronConfiguration.STREAM_ID;
+
 import org.agrona.concurrent.BusySpinIdleStrategy;
 import org.agrona.concurrent.IdleStrategy;
 
@@ -12,17 +15,9 @@ public class Subscriber
     
     public static void main(final String[] args)
     {
-        // Maximum number of message fragments to receive during a single 'poll' operation
         final int fragmentLimitCount = 7;
-
-        // The channel (an endpoint identifier) to receive messages from
-        final String channel = "aeron:udp?endpoint=localhost:40123";
-
-        // A unique identifier for a stream within a channel. Stream ID 0 is reserved
-        // for internal use and should not be used by applications.
-        final int streamId = 10;
         
-        System.out.println("Subscribing to " + channel + " on stream id " + streamId);
+        System.out.println("Subscribing to " + CHANNEL + " on stream id " + STREAM_ID);
         final Aeron.Context ctx = new Aeron.Context();
         
 
@@ -34,16 +29,13 @@ public class Subscriber
 
                 System.out.println(String.format(
                     "Received message (%s) to stream %d from session %x term id %x term offset %d (%d@%d)",
-                    new String(data), streamId, header.sessionId(),
+                    new String(data), STREAM_ID, header.sessionId(),
                     header.termId(), header.termOffset(), length, offset));
-
-                // Received the intended message, time to exit the program
-                //running.set(false);
             };
 
     
         Aeron connection = Aeron.connect(ctx);
-        Subscription subscription = connection.addSubscription(channel, streamId);
+        Subscription subscription = connection.addSubscription(CHANNEL, STREAM_ID);
 
         Thread pollerThread = new Thread(() ->
         {
@@ -59,8 +51,7 @@ public class Subscriber
         });
 
         pollerThread.start();
-            
-        
+               
     }
 
  

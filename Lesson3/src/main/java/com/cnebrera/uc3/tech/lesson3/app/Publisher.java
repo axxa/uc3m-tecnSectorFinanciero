@@ -1,5 +1,8 @@
 package com.cnebrera.uc3.tech.lesson3.app;
 
+import static com.cnebrera.uc3.tech.lesson3.config.AeronConfiguration.CHANNEL;
+import static com.cnebrera.uc3.tech.lesson3.config.AeronConfiguration.STREAM_ID;
+
 import java.util.concurrent.TimeUnit;
 
 import org.agrona.BitUtil;
@@ -11,37 +14,34 @@ import io.aeron.Publication;
 
 public class Publisher
 {
+    final static UnsafeBuffer buffer = new UnsafeBuffer(BufferUtil.allocateDirectAligned(512, BitUtil.CACHE_LINE_LENGTH));
+    final static Aeron.Context ctx = new Aeron.Context();
+    
+
     public static void main(final String[] args) throws Exception
     {
-        // Allocate enough buffer size to hold maximum message length
-        // The UnsafeBuffer class is part of the Agrona library and is used for efficient buffer management
-        final UnsafeBuffer buffer = new UnsafeBuffer(BufferUtil.allocateDirectAligned(512, BitUtil.CACHE_LINE_LENGTH));
+        int numberOfMessagesToPublish = 10;
 
-        // The channel (an endpoint identifier) to send the message to
-        final String channel = "aeron:udp?endpoint=localhost:40123";
-
-        // A unique identifier for a stream within a channel. Stream ID 0 is reserved
-        // for internal use and should not be used by applications.
-        final int streamId = 10;
-
-        System.out.println("Publishing to " + channel + " on stream id " + streamId);
-
-        // Create a context, needed for client connection to media driver
-        // A separate media driver process needs to be running prior to starting this application
-        final Aeron.Context ctx = new Aeron.Context();
-
-        // Create an Aeron instance with client-provided context configuration and connect to the
-        // media driver, and create a Publication.  The Aeron and Publication classes implement
-        // AutoCloseable, and will automatically clean up resources when this try block is finished.
-        try (Aeron aeron = Aeron.connect(ctx);
-            Publication publication = aeron.addPublication(channel, streamId))
+        try (Aeron aeron = Aeron.connect(ctx))
         {
+            while(numberOfMessagesToPublish > 0){
+                publishMessage(aeron);
+                numberOfMessagesToPublish--;
+            }
+        }
+
+    }
+
+    public static void publishMessage(Aeron aeron) throws Exception
+    {
+        System.out.println("Publishing to " + CHANNEL + " on stream id " + STREAM_ID);
+
+        Publication publication = aeron.addPublication(CHANNEL, STREAM_ID);
             final String message = "Hello World! ";
             final byte[] messageBytes = message.getBytes();
             buffer.putBytes(0, messageBytes);
 
             // Wait for 5 seconds to connect to a subscriber
-            
             final long deadlineNs = System.nanoTime() + TimeUnit.SECONDS.toNanos(5);
             while (!publication.isConnected())
             {
@@ -54,8 +54,6 @@ public class Publisher
                 Thread.sleep(1);
             }
             
-            // Try to publish the buffer. 'offer' is a non-blocking call.
-            // If it returns less than 0, the message was not sent, and the offer should be retried.
             final long result = publication.offer(buffer, 0, messageBytes.length);
 
             if (result < 0L)
@@ -87,6 +85,5 @@ public class Publisher
             }
 
             System.out.println("Done sending.");
-        }
     }
 }
