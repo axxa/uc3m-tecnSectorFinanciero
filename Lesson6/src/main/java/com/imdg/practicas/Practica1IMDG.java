@@ -4,10 +4,12 @@ import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
+import com.imdg.datagrid.DataGridNode;
 import com.imdg.pojos.Person;
 
 import java.util.Map;
 import java.util.Queue;
+import java.util.Map.Entry;
 
 public class Practica1IMDG {
 
@@ -19,7 +21,13 @@ public class Practica1IMDG {
         Config config = new Config();
         config.getNetworkConfig().getJoin().getTcpIpConfig().addMember("localhost").setEnabled(true);
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
+        
+        DataGridNode node = new DataGridNode();
+        //node.mockPopulateCache();
 
-
+        IMap<Long, String> map = node.getHzInstance().getMap("data");
+        for (Entry<Long, String> entry : map.entrySet()) {
+            System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
+        }
     }
 }
