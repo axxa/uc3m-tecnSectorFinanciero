@@ -38,5 +38,10 @@
             <artifactId>aeron-driver</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.hdrhistogram</groupId>
+            <artifactId>HdrHistogram</artifactId>
+            <version>2.1.8</version>
+        </dependency>
     </dependencies>
 </project>
