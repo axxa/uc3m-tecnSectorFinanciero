@@ -3,9 +3,9 @@
 SETLOCAL
 
 REM Descomentad la linea de abajo y poned vuestro java si no os funciona
-set MI_JAVA_HOME="C:\Program Files\Java\jdk1.8.0_161"
-if NOT DEFINED MI_JAVA_HOME goto error
-set RUN_JAVA="%MI_JAVA_HOME%\bin\java"
+REM set JAVA_HOME="C:\Program Files (x86)\Java\jdk1.7.0_09"
+if NOT DEFINED JAVA_HOME goto error
+set RUN_JAVA="%JAVA_HOME%\bin\java"
 
 
 REM ******* you can enable following variables by uncommenting them
@@ -37,7 +37,7 @@ start "hazelcast" "%RUN_JAVA%" %JAVA_OPTS% -cp "%CLASSPATH%" "com.hazelcast.core
 goto endofscript
 
 :error
-ECHO MI_JAVA_HOME environment variable must be set!
+ECHO JAVA_HOME environment variable must be set!
 pause
 
 
