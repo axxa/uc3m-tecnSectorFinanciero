@@ -1,12 +1,12 @@
 package com.imdg.datagrid;
 
-import com.hazelcast.config.Config;
-import com.hazelcast.config.JoinConfig;
-import com.hazelcast.config.NetworkConfig;
+import java.util.Map.Entry;
+
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.core.IdGenerator;
+import com.imdg.pojos.Person;
 
 public class DataGridNode {
     private HazelcastInstance hzInstance;
@@ -36,6 +36,21 @@ public class DataGridNode {
         IdGenerator idGenerator = this.hzInstance.getIdGenerator("newid");
         for (int i = 0; i < 10; i++) {
             cacheNode.put(idGenerator.newId(), "message" + i);
+        }
+    }
+
+    public void addToCache(Object o){
+        IMap<Long, Object> cacheNode = this.hzInstance.getMap("data");
+        IdGenerator idGenerator = this.hzInstance.getIdGenerator("newid");
+        cacheNode.put(idGenerator.newId(), o);
+        
+    }
+
+    public void printCache(){
+        System.out.println( "printCache\n" );
+        IMap<Long, Person> map = hzInstance.getMap("data");
+        for (Entry<Long, Person> entry : map.entrySet()) {
+            System.out.println("Person name: " + entry.getValue().getName() + " zipCode: " + entry.getValue().getZipCode());
         }
     }
 }
