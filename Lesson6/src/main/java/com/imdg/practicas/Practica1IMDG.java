@@ -23,11 +23,6 @@ public class Practica1IMDG {
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
         
         DataGridNode node = new DataGridNode();
-        //node.mockPopulateCache();
-
-        IMap<Long, String> map = node.getHzInstance().getMap("data");
-        for (Entry<Long, String> entry : map.entrySet()) {
-            System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
-        }
+        
     }
 }
