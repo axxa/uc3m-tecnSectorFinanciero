@@ -14,12 +14,23 @@ public class OrderProcessor
 
 
     /**
-     * Metodo que debe procesar cada entrada y cambiar su volumen a 0, y devolver el antiguo
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Metodo que debe procesar cada entrada y cambiar su volumen a 0, y devolver el
+     * antiguo
+     * 
      * @param entry Hazelcast llamará a este metodo para cada entrada de la cache
      * @return Integer con el volumen que existia
      */
     @Override
     public Object process(Map.Entry<String,MarketOrder> entry) {
-        return null;
+        MarketOrder order = entry.getValue();
+        Integer currentValue = order.getVolume();
+        order.setVolume(0);
+        entry.setValue(order);
+        return currentValue;
     }
 }

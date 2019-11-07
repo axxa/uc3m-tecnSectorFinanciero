@@ -61,15 +61,16 @@ public class P2VolumeProcessing {
 
         //Procesar los objetos que ha devuelto nuestro processor,
         //Recordad que nuestro processor devuelve un entero
+        Integer totalValue = 0;
         for (Map.Entry<String,Object> orderVolumes : ret.entrySet()) {
-
+            totalValue += (Integer) orderVolumes.getValue();
         }
-
+        System.out.println("\nLa total del volumen de ordenes: " + totalValue + "\n");
 
         if( mapCustomers.entrySet(new EqualPredicate("volume",0)).isEmpty() ) {
             throw new Exception("Los volumenes de todos los elementos deben quedar a 0");
         }
 
-        client.shutdown();
+        client.shutdown(); 
     }
 }
