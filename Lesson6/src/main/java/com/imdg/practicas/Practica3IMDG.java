@@ -3,10 +3,13 @@ package com.imdg.practicas;
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.IMap;
+import com.hazelcast.core.IdGenerator;
 import com.imdg.datagrid.DataGridNode;
 import com.imdg.pojos.Person;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 public class Practica3IMDG {
 
@@ -18,21 +21,27 @@ public class Practica3IMDG {
         config.getNetworkConfig().setAddresses(ips);
 
         HazelcastInstance client = HazelcastClient.newHazelcastClient( config );
-
-
-
-
-        
+        //print cache
+        printClientCache(client);
         //Vuestro código va aqui
-        DataGridNode node = new DataGridNode();
-        node.printCache();
+        IMap<Long, Object> cacheNode = client.getMap("data");
         Person p = new Person("Alvaro", 28005, "", "");
-        node.addToCache(p);
-        node.printCache();
-
-
+        //put to cache
+        IdGenerator idGenerator = client.getIdGenerator("newid");
+        cacheNode.put(idGenerator.newId(), p);
+        //print cache
+        printClientCache(client);
 
         client.shutdown();
 
+    }
+
+    private static void printClientCache(HazelcastInstance client){
+        System.out.println( "printCache\n" );
+        IMap<Long, Person> map = client.getMap("data");
+        for (Entry<Long, Person> entry : map.entrySet()) {
+            System.out.println("Entry key: "+ entry.getKey() + " Person name: " + entry.getValue().getName() + 
+            " zipCode: " + entry.getValue().getZipCode());
+        }
     }
 }

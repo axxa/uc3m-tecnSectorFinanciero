@@ -43,14 +43,13 @@ public class DataGridNode {
         IMap<Long, Object> cacheNode = this.hzInstance.getMap("data");
         IdGenerator idGenerator = this.hzInstance.getIdGenerator("newid");
         cacheNode.put(idGenerator.newId(), o);
-        
     }
 
     public void printCache(){
         System.out.println( "printCache\n" );
         IMap<Long, Person> map = hzInstance.getMap("data");
         for (Entry<Long, Person> entry : map.entrySet()) {
-            System.out.println("Person name: " + entry.getValue().getName() + " zipCode: " + entry.getValue().getZipCode());
+            System.out.println("Entry key: "+ entry.getKey() + " Person name: " + entry.getValue().getName() + " zipCode: " + entry.getValue().getZipCode());
         }
     }
 }

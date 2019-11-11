@@ -11,6 +11,7 @@ import com.imdg.pojos.Person;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 public class Practica2IMDGa {
 
@@ -23,20 +24,24 @@ public class Practica2IMDGa {
         config.getNetworkConfig().getJoin().getTcpIpConfig().addMember("localhost").setEnabled(true);
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
         
-        DataGridNode node = new DataGridNode();
-        //Leader node
-        ICountDownLatch latch = node.getHzInstance().getCountDownLatch( "countDownLatch" );
-        System.out.println( "Leader Starting" );
-        latch.trySetCount( 1 );
-        Thread.sleep( 30000 );
-        //Process to be executed----------------------
         Person p = new Person("Alvaro", 28051, "", "");
-        node.addToCache(p);
-        node.printCache();
-        //---------------------------------------------
 
+        DataGridNode node = new DataGridNode();
+        
+        ICountDownLatch latch = node.getHzInstance().getCountDownLatch( "countDownLatch" );
+        // tokens por numero de nodos
+        latch.trySetCount(3);
+        System.out.println( "Waiting" );
+        //Process to be executed----------------------
+        node.addToCache(p);
+        //--------------------------------------------
+        boolean success = latch.await( 60, TimeUnit.SECONDS );
+        //-----Restar un token------------------------
         latch.countDown();
-        System.out.println( "Leader finished" );
+        System.out.println("Faltan " + latch.getCount() + " nodos");
+        //--------------------------------------------
+        node.printCache();
+        //-------------------------------------------
         latch.destroy();
     }
 }

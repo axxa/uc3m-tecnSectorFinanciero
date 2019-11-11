@@ -24,16 +24,24 @@ public class Practica2IMDGb {
         config.getNetworkConfig().getJoin().getTcpIpConfig().addMember("localhost").setEnabled(true);
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
         
-        DataGridNode node = new DataGridNode();
-        //Follower node
-        ICountDownLatch latch = node.getHzInstance().getCountDownLatch( "countDownLatch" );
-        System.out.println( "Waiting" );
-        boolean success = latch.await( 10, TimeUnit.SECONDS );
-        System.out.println( "Complete: " + success );
-        //Process to be executed----------------------
         Person p = new Person("Irene", 28052, "", "");
+
+        DataGridNode node = new DataGridNode();
+        
+        ICountDownLatch latch = node.getHzInstance().getCountDownLatch( "countDownLatch" );
+        // tokens por numero de nodos
+        latch.trySetCount(3);
+        System.out.println( "Waiting" );
+        //Process to be executed----------------------
         node.addToCache(p);
+        //--------------------------------------------
+        boolean success = latch.await( 60, TimeUnit.SECONDS );
+        //-----Restar un token------------------------
+        latch.countDown();
+        System.out.println("Faltan " + latch.getCount() + " nodos");
+        //--------------------------------------------
         node.printCache();
         //-------------------------------------------
+        latch.destroy();
     }
 }
