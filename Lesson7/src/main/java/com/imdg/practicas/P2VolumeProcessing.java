@@ -1,17 +1,13 @@
 package com.imdg.practicas;
 
-import com.hazelcast.client.HazelcastClient;
-import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.query.impl.predicates.EqualPredicate;
-import com.hazelcast.query.impl.predicates.NotEqualPredicate;
 import com.imdg.pojos.MarketOrder;
 import com.imdg.processors.OrderProcessor;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 /**

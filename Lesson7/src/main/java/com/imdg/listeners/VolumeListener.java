@@ -1,11 +1,8 @@
 package com.imdg.listeners;
 
 import com.hazelcast.core.EntryEvent;
-import com.hazelcast.core.EntryListener;
-import com.hazelcast.core.MapEvent;
 import com.hazelcast.map.listener.EntryAddedListener;
 import com.hazelcast.map.listener.EntryUpdatedListener;
-import com.hazelcast.map.listener.MapListener;
 import com.imdg.pojos.MarketOrder;
 
 import java.io.Serializable;
@@ -18,6 +15,10 @@ public class VolumeListener
             implements EntryAddedListener<String, MarketOrder>,
         EntryUpdatedListener<String, MarketOrder>, Serializable {
          
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private String instrumentoAControlar;
     private int volumenAcumulado=0;
     private HashMap<String, MarketOrder> orderMap;

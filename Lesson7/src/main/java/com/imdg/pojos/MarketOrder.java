@@ -7,6 +7,10 @@ import java.io.Serializable;
  */
 public class MarketOrder implements Serializable{
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /* Instrument/name of the company whose stocks were traded */
     private String instrument;
     /* Amount of stocks traded */

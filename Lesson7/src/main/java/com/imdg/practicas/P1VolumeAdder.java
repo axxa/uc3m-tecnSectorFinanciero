@@ -1,15 +1,10 @@
 package com.imdg.practicas;
 
-import com.hazelcast.client.HazelcastClient;
-import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.imdg.pojos.MarketOrder;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 public class P1VolumeAdder {
 
