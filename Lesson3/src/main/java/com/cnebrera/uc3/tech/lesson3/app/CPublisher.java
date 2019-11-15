@@ -3,7 +3,6 @@ package com.cnebrera.uc3.tech.lesson3.app;
 import static com.cnebrera.uc3.tech.lesson3.config.AeronConfiguration.CHANNEL;
 import static com.cnebrera.uc3.tech.lesson3.config.AeronConfiguration.STREAM_ID;
 
-import java.sql.Timestamp;
 import java.util.concurrent.TimeUnit;
 
 import com.cnebrera.uc3.tech.lesson3.util.SerializeUtil;
