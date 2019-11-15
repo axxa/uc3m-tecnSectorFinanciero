@@ -38,7 +38,6 @@ public class VolumeListener
         
         if (order.getInstrument().equals(this.instrumentoAControlar)) {
             this.volumenAcumulado += order.getVolume();
-            this.orderMap.put(entryEvent.getKey(), order);
         }
 
         verifyOrderVolumn();
@@ -50,12 +49,10 @@ public class VolumeListener
      */
     @Override
     public void entryUpdated(EntryEvent<String, MarketOrder> entryEvent) {
-        MarketOrder currentOrder = this.orderMap.get(entryEvent.getKey());
         MarketOrder order = entryEvent.getValue();
 
         if (order.getInstrument().equals(this.instrumentoAControlar)) {
-            this.volumenAcumulado += (order.getVolume() - currentOrder.getVolume());
-            this.orderMap.put(entryEvent.getKey(), order);
+            this.volumenAcumulado += (order.getVolume() - entryEvent.getOldValue().getVolume());
         }
 
         verifyOrderVolumn();
