@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="NOMURA">
+        <param name="gui:x" value="100"/>
+        <param name="gui:y" value="36"/>
+    </component>
+    <component name="DEUTSCHE_BANK">
+        <param name="gui:x" value="100"/>
+        <param name="gui:y" value="130"/>
+    </component>
+    <component name="MANUAL">
+        <param name="gui:x" value="100"/>
+        <param name="gui:y" value="222"/>
+    </component>
+    <component name="ORDER_ENTRY">
+        <param name="gui:x" value="104"/>
+        <param name="gui:y" value="365"/>
+    </component>
+    <component name="BID_LIQUIDITY">
+        <param name="gui:x" value="646"/>
+        <param name="gui:y" value="75"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="ASK_LIQUIDITY">
+        <param name="gui:x" value="646"/>
+        <param name="gui:y" value="556"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="TICK_MERGE">
+        <param name="gui:x" value="268"/>
+        <param name="gui:y" value="131"/>
+    </component>
+    <component name="TICK_CLEANSING">
+        <param name="gui:x" value="363"/>
+        <param name="gui:y" value="132"/>
+    </component>
+    <component name="BID_SPLITTER">
+        <param name="gui:x" value="477"/>
+        <param name="gui:y" value="49"/>
+    </component>
+    <component name="BID_TICKS_UPDATER">
+        <param name="gui:x" value="656"/>
+        <param name="gui:y" value="-20"/>
+    </component>
+    <component name="ASK_TICKS_UPDATER">
+        <param name="gui:x" value="657"/>
+        <param name="gui:y" value="181"/>
+    </component>
+    <component name="PRETRADING_FILTERS">
+        <param name="gui:x" value="259"/>
+        <param name="gui:y" value="365"/>
+    </component>
+    <component name="ORDER_SIDE_SPLITTER">
+        <param name="gui:x" value="384"/>
+        <param name="gui:y" value="354"/>
+    </component>
+    <component name="BUY_MATCHING_ENGINE">
+        <param name="gui:x" value="507"/>
+        <param name="gui:y" value="413"/>
+    </component>
+    <component name="SELL_MATCHING_ENGINE">
+        <param name="gui:x" value="507"/>
+        <param name="gui:y" value="289"/>
+    </component>
+    <component name="DISCARDED_TICKS">
+        <param name="gui:x" value="481"/>
+        <param name="gui:y" value="142"/>
+    </component>
+    <component name="BID_UPDATER_OUTPUT">
+        <param name="gui:x" value="808"/>
+        <param name="gui:y" value="-20"/>
+    </component>
+    <component name="ASK_UPDATER_OUTPUT">
+        <param name="gui:x" value="808"/>
+        <param name="gui:y" value="181"/>
+    </component>
+    <component name="REJECTED_ORDERS">
+        <param name="gui:x" value="384"/>
+        <param name="gui:y" value="458"/>
+    </component>
+    <component name="ASK_MATCHED_LIQUIDITY">
+        <param name="gui:x" value="733"/>
+        <param name="gui:y" value="413"/>
+    </component>
+    <component name="BID_MATCHED_LIQUIDITY">
+        <param name="gui:x" value="734"/>
+        <param name="gui:y" value="298"/>
+    </component>
+</application-layout>

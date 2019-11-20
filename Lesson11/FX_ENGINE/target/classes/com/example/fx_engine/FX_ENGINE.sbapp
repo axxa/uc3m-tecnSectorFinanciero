@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="10.4.3_a45545bc0fa864b6dd457e084eb653f6e2004e05">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.example.fx_engine.FX_ENGINE"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <named-schemas>
+            <schema name="Order">
+                <field name="Symbol" type="string"/>
+                <field name="Vol" type="int"/>
+                <field name="Price" type="double"/>
+                <field name="Side" type="string"/>
+            </schema>
+            <schema name="Quote">
+                <field name="Symbol" type="string"/>
+                <field name="BidVol" type="int"/>
+                <field name="BidPrice" type="double"/>
+                <field name="AskVol" type="int"/>
+                <field name="AskPrice" type="double"/>
+            </schema>
+        </named-schemas>
+        <constant expr="'BUY'" name="BUY"/>
+        <constant expr="'SELL'" name="SELL"/>
+        <dynamic-variables/>
+        <data name="ASK_LIQUIDITY" shared="false" source="concrete" type="querytable">
+            <param name="storage-method" value="heap"/>
+            <param name="replicated" value="false"/>
+            <table-schema schema="Quote">
+                <primary-index type="btree">
+                    <field name="Symbol"/>
+                    <field name="AskPrice"/>
+                </primary-index>
+            </table-schema>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+        </data>
+        <data name="BID_LIQUIDITY" shared="false" source="concrete" type="querytable">
+            <param name="storage-method" value="heap"/>
+            <param name="replicated" value="false"/>
+            <table-schema schema="Quote">
+                <primary-index type="btree">
+                    <field name="Symbol"/>
+                    <field name="BidPrice"/>
+                </primary-index>
+            </table-schema>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+        </data>
+        <stream name="DEUTSCHE_BANK" schema="Quote"/>
+        <stream name="MANUAL" schema="Quote"/>
+        <stream name="NOMURA" schema="Quote"/>
+        <stream name="ORDER_ENTRY" schema="Order"/>
+        <box name="PRETRADING_FILTERS" type="filter">
+            <input port="1" stream="ORDER_ENTRY"/>
+            <output port="1" stream="out:PRETRADING_FILTERS_1"/>
+            <output port="2" stream="REJECTED_ORDERS"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="(Symbol == 'EURUED' || Symbol == 'EURCHF' )&#13;&#10;&amp;&amp;&#13;&#10;(Vol &gt;= 30 &amp;&amp; Vol &lt;= 150)&#13;&#10;&amp;&amp;&#13;&#10;(Side == BUY || Side == SELL)"/>
+            <param name="expression.1" value="true"/>
+        </box>
+        <box name="TICK_MERGE" type="union">
+            <input port="1" stream="NOMURA"/>
+            <input port="2" stream="DEUTSCHE_BANK"/>
+            <input port="3" stream="MANUAL"/>
+            <output port="1" stream="out:TICK_MERGE_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <output-stream name="REJECTED_ORDERS"/>
+        <box name="ORDER_SIDE_SPLITTER" type="filter">
+            <input port="1" stream="out:PRETRADING_FILTERS_1"/>
+            <output port="1" stream="out:ORDER_SIDE_SPLITTER_1"/>
+            <output port="2" stream="out:ORDER_SIDE_SPLITTER_2"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="input1.Side == BUY"/>
+            <param name="expression.1" value="true"/>
+        </box>
+        <box name="TICK_CLEANSING" type="filter">
+            <input port="1" stream="out:TICK_MERGE_1"/>
+            <output port="1" stream="out:TICK_CLEANSING_1"/>
+            <output port="2" stream="out:TICK_CLEANSING_2"/>
+            <output port="3" stream="DISCARDED_TICKS"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="(Symbol ==  'EURUSD' || Symbol ==  'EURCHF')&#13;&#10;&amp;&amp;&#13;&#10;(BidPrice &gt; 0 &amp;&amp; AskPrice &gt; 0)&#13;&#10;&amp;&amp;&#13;&#10;(BidVol &gt; 0 &amp;&amp; AskVol &gt; 0)"/>
+            <param name="expression.1" value="true"/>
+            <param name="expression.2" value="true"/>
+        </box>
+        <output-stream name="DISCARDED_TICKS"/>
+        <box name="BID_SPLITTER" type="split">
+            <input port="1" stream="out:TICK_CLEANSING_1"/>
+            <output port="1" stream="out:BID_SPLITTER_1"/>
+            <output port="2" stream="out:BID_SPLITTER_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="BUY_MATCHING_ENGINE" type="query">
+            <input port="1" stream="out:ORDER_SIDE_SPLITTER_2"/>
+            <output port="1" stream="ASK_MATCHED_LIQUIDITY"/>
+            <dataref id="querytable" name="ASK_LIQUIDITY"/>
+            <param name="operation" value="read"/>
+            <param name="where" value="expression"/>
+            <param name="where-expression" value="current.Symbol == input1.Symbol &amp;&amp; current.AskPrice &lt;= input1.Price"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-explicit"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <item name="current" selection="none"/>
+            </target-list>
+            <target-list goal-schema="Quote" name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="Quote" name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="Quote" name="no-match">
+                <item name="input" selection="all"/>
+                <expressions>
+                    <set field="Symbol">'NO_LIQUIDITY_FOUND'</set>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="SELL_MATCHING_ENGINE" type="query">
+            <input port="1" stream="out:ORDER_SIDE_SPLITTER_1"/>
+            <output port="1" stream="BID_MATCHED_LIQUIDITY"/>
+            <dataref id="querytable" name="BID_LIQUIDITY"/>
+            <param name="operation" value="read"/>
+            <param name="where" value="expression"/>
+            <param name="where-expression" value="current.Symbol == input1.Symbol &amp;&amp; current.BidPrice &lt;= input1.Price"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-explicit"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <item name="current" selection="none"/>
+            </target-list>
+            <target-list goal-schema="Quote" name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="Quote" name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="Quote" name="no-match">
+                <item name="input" selection="all"/>
+                <expressions>
+                    <set field="Symbol">'NO_LIQUIDITY_FOUND'</set>
+                </expressions>
+            </target-list>
+        </box>
+        <output-stream name="ASK_MATCHED_LIQUIDITY"/>
+        <output-stream name="BID_MATCHED_LIQUIDITY"/>
+        <box name="ASK_TICKS_UPDATER" type="query">
+            <input port="1" stream="out:BID_SPLITTER_2"/>
+            <output port="1" stream="ASK_UPDATER_OUTPUT"/>
+            <dataref id="querytable" name="ASK_LIQUIDITY"/>
+            <param name="operation" value="write"/>
+            <param name="where" value="primary-key"/>
+            <param name="key-field.0" value="Symbol"/>
+            <param name="key-value.0" value="input1.Symbol"/>
+            <param name="key-field.1" value="AskPrice"/>
+            <param name="key-value.1" value="input1.AskPrice"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="update"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="all"/>
+            </target-list>
+            <target-list name="insert">
+                <item name="input" selection="all"/>
+                <expressions>
+                    <set field="AskVol">input1.AskVol</set>
+                </expressions>
+            </target-list>
+            <target-list name="update">
+                <item name="input" selection="all"/>
+                <expressions>
+                    <set field="AskVol">old.AskVol + input1.AskVol</set>
+                </expressions>
+            </target-list>
+            <target-list goal-schema="Quote" name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <box name="BID_TICKS_UPDATER" type="query">
+            <input port="1" stream="out:BID_SPLITTER_1"/>
+            <output port="1" stream="BID_UPDATER_OUTPUT"/>
+            <dataref id="querytable" name="BID_LIQUIDITY"/>
+            <param name="operation" value="write"/>
+            <param name="where" value="primary-key"/>
+            <param name="key-field.0" value="Symbol"/>
+            <param name="key-value.0" value="input1.Symbol"/>
+            <param name="key-field.1" value="BidPrice"/>
+            <param name="key-value.1" value="input1.BidPrice"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="update"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="all"/>
+            </target-list>
+            <target-list name="insert">
+                <item name="input" selection="all"/>
+                <expressions>
+                    <set field="BidVol">input1.BidVol</set>
+                </expressions>
+            </target-list>
+            <target-list name="update">
+                <item name="input" selection="all"/>
+                <expressions>
+                    <set field="BidVol">old.BidVol + input1.BidVol</set>
+                </expressions>
+            </target-list>
+            <target-list goal-schema="Quote" name="no-match">
+                <item name="input" selection="all"/>
+                <expressions>
+                    <set field="BidVol">old.BidVol + input1.BidVol</set>
+                </expressions>
+            </target-list>
+        </box>
+        <output-stream name="ASK_UPDATER_OUTPUT"/>
+        <output-stream name="BID_UPDATER_OUTPUT"/>
+    </add>
+</modify>
