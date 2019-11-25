@@ -103,6 +103,9 @@ public class Launcher
         // Set initial parameters: annotation package, content type and WebSocket support
 
         // TODO 1
+        atmosphereServletHolder.setInitParameter(ApplicationConfig.ANNOTATION_PACKAGE,
+        "com.cnebrera.uc3.tech.lesson4.handlers.long_polling," + "com.cnebrera.uc3.tech.lesson4.handlers.websocket");
+        atmosphereServletHolder.setInitParameter(ApplicationConfig.WEBSOCKET_CONTENT_TYPE, "application/json");
         
         atmosphereServletHolder.setInitParameter(ApplicationConfig.PROPERTY_COMET_SUPPORT, Jetty9AsyncSupportWithWebSocket.class.getName()) ;
 
@@ -137,7 +140,8 @@ public class Launcher
     	// New instance of Launcher
     	final Launcher launcher = new Launcher() ;
     	
-    	// Process the input arguments
-    	launcher.generateProcess(args) ;
+        // Process the input arguments
+        String[] asd = {"1"};
+    	launcher.generateProcess(asd) ;
     }
 }

@@ -42,6 +42,27 @@ public class PricesListenerLongPolling implements IPricesListener
      */
 	protected void sendPendingPricesChange(final AtmosphereResponse atmosphereResponse)
 	{
-		// TODO 1
+        // TODO 1
+        try
+        {
+            if (this.pendingPricesMessage != null)
+            {
+                // Verify if the price was not sent previously
+                if (!this.pendingPricesMessage.isPriceWasSent())
+                {
+                    atmosphereResponse.getWriter().write(this.pendingPricesMessage.toString()) ;
+                }
+                // This price was sent
+                this.pendingPricesMessage.priceWasSent() ;
+            }
+        }
+        catch (IOException ioException)
+        {
+            LOGGER.error("IOException while sending the pending prices as Long-Polling transport", ioException) ;
+        }
+
+
+
+
 	}
 }

@@ -19,6 +19,7 @@ import com.cnebrera.uc3.tech.lesson4.handlers.PricesPublisher;
  */
 
 // TODO 1
+@AtmosphereHandlerService(path="/prices/long-polling")
 public class LongPollingHandler implements AtmosphereHandler
 {
 	/** Attribute - Prices Listener - Long Polling */
@@ -39,19 +40,29 @@ public class LongPollingHandler implements AtmosphereHandler
     	// Get the Atmosphere request
     	final AtmosphereRequest atmosphereRequest = atmosphereResource.getRequest() ;
     	
-    	// TODO 2
+		// TODO 2
+		atmosphereRequest.resource().suspend(-1);
+		((PricesListenerLongPolling)this.pricesListener).sendPendingPricesChange(atmosphereRequest.resource().getResponse());
+		atmosphereRequest.resource().resume();
     }   
     
     @Override
     public void onStateChange(final AtmosphereResourceEvent atmosphereResourceEvent) throws IOException
     {
-    	// TODO 3
+		// TODO 3
+		if (atmosphereResourceEvent.isCancelled() || atmosphereResourceEvent.isClosedByApplication() ||
+			atmosphereResourceEvent.isClosedByClient())
+		{
+			this.removeListener() ;
+		}
+
     }
 
 	@Override
 	public void destroy()
 	{
 		// TODO 4
+		this.removeListener();
 	}
 	
 	/**

@@ -34,8 +34,10 @@ var Statistics = (function ()
     Statistics.prototype.updateStatistics = function()
     {
 		// TODO 1 - Include here your code to calculate statistics!
-		
-    		
+    	var now = new Date().getTime() ;
+    	this.elapsedTime = (now - this.startTime) / 1000 ;
+    	this.messagesPerSecond = this.totalMessages / this.elapsedTime ;
+    	
     	this.displayStatistics() ;
     }
     
