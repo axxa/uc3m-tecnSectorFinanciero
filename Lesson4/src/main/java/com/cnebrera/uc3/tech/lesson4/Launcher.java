@@ -141,7 +141,7 @@ public class Launcher
     	final Launcher launcher = new Launcher() ;
     	
         // Process the input arguments
-        String[] asd = {"1"};
-    	launcher.generateProcess(asd) ;
+        String[] sleepTime = {"10"};
+    	launcher.generateProcess(sleepTime) ;
     }
 }
