@@ -17,7 +17,14 @@ public class AeronConfiguration
 
     static
     {
-        CHANNEL = System.getProperty(CHANNEL_PROP, "aeron:udp?endpoint=224.0.1.1:40456");
+
+        //multicast
+        //CHANNEL = System.getProperty(CHANNEL_PROP, "aeron:udp?endpoint=224.0.1.1:40456||interface=192.168.1.0/24");
+        //unicast
+        CHANNEL = System.getProperty(CHANNEL_PROP, "aeron:udp?endpoint=224.0.1.1:40456||interface=192.168.1.1");
+        //ipc
+        //CHANNEL = System.getProperty(CHANNEL_PROP, "aeron:ipc?endpoint=224.0.1.1:40456");
+
         STREAM_ID = Integer.getInteger(STREAM_ID_PROP, 10);
         IDLE_STRATEGY_NAME = System.getProperty(IDLE_STRATEGY_PROP, "org.agrona.concurrent.BusySpinIdleStrategy");
     }
