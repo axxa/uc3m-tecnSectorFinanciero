@@ -23,7 +23,7 @@ public class LatencyPublisher
     static private long sendTime;
     static private long receivedTime;
 
-    final static int NUMBER_OF_MSGS_TO_PUBLISH = 100000;
+    final static int NUMBER_OF_MSGS_TO_PUBLISH = 1000;
 
     static Histogram histogram = new Histogram(3600000000000L, 3);
     static Histogram histogramCum = new Histogram(3600000000000L, 3);
@@ -44,9 +44,10 @@ public class LatencyPublisher
 
         histogram.outputPercentileDistribution(System.out, 1000.0);
         //histogramCum.outputPercentileDistribution(System.out, 1000.0);
-        //BigDecimal ratio = new BigDecimal( (double) NUMBER_OF_MSGS_TO_PUBLISH / (totalCum/1000)).setScale(10);
         
-        System.out.println("Ratio envio " + NUMBER_OF_MSGS_TO_PUBLISH + " por segundo: " +  totalCum );
+        //System.out.println("Ratio envio " + NUMBER_OF_MSGS_TO_PUBLISH + " por segundo: " +  (double)NUMBER_OF_MSGS_TO_PUBLISH / (totalCum / 1000) );
+
+        System.out.println("Ratio envio " + NUMBER_OF_MSGS_TO_PUBLISH + " por segundo: " +  (double)NUMBER_OF_MSGS_TO_PUBLISH / (histogram.getMean() / 1000) );
 
     }
 
