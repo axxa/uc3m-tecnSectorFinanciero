@@ -24,10 +24,12 @@ public class XjcLauncher
 		try
 		{
 			// TODO 1
-			
+			final Process process = Runtime.getRuntime().exec("xjc -d " + Constants.FOLDER_OUTPUT + " -p " +
+			Constants.PACKAGE_NAME_OUTPUT + " " + Constants.XSD_FILE_INPUT) ;
 			// TODO 2
-			
+			process.waitFor() ;
 			// TODO 3
+			this.printOutput(process) ;
 		}
 	    catch (IOException ioException)
 		{

@@ -1,17 +1,16 @@
 /*********************************************************************
 This class has been automatically generated using Velocity!
-${now}
+Thu Dec 05 16:45:23 CET 2019
 **********************************************************************/
 
 
-package ${packageName} ;
+package com.cnebrera.uc3.tech.lesson8.velocity ;
 
-#foreach($classImport in $classImports)
-import ${classImport} ;
-#end
+import java.util.List ;
+import java.util.ArrayList ;
 
 
-public class ${className}
+public class VelocityClassExample
 {
    /** Attribute - myListStringValues */
    private List<String> myListStringValues ;
@@ -41,7 +40,7 @@ public class ${className}
 	 */ 
 	public static void main(final String[] args)
 	{
-		final ${className} myExample = new ${className}() ;
+		final VelocityClassExample myExample = new VelocityClassExample() ;
 		System.out.println(myExample.toString()) ;
 	}
 }

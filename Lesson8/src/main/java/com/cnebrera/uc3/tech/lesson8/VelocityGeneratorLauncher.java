@@ -22,8 +22,12 @@ public class VelocityGeneratorLauncher extends AbstractXMLLauncher
 	protected void generateClassfromVelocity() throws IOException, JAXBException
 	{
 		// TODO 1
-		
+		// Create a new instance of the Velocity Handler
+		final VelocityHandler velocityHandler = new VelocityHandler() ;
 		// TODO 2
+		// Generate the class
+		velocityHandler.generateClassFromVelocityTemplate(Constants.VELOCITY_CLASS_GENERATED_PACKAGE,
+		Constants.VELOCITY_CLASS_GENERATED_CLASSNAME) ;
 	}
 	
 	/**

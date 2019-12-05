@@ -30,14 +30,22 @@ public class VelocityHandler
 	public void generateClassFromVelocityTemplate(final String packageName, final String className)
 	{
 		// TODO 1
-        
+        // Initialize the Velocity engine
+		final VelocityEngine velocityEngine = new VelocityEngine() ;
+		//final VelocityEngine velocityEngine = initializeVelocityEngine() ;
 		// TODO 2
-		
+		// Get the template
+		final Template template = velocityEngine.getTemplate(Constants.VELOCITY_TEMPLATE_NAME) ;
 		// TODO 3
-        
+        // Set the context parameters
+		final VelocityContext context = this.setContextParameters(packageName, className) ;
 		// TODO 4
-        
+        // Render the template into a StringWriter
+		final StringWriter writer = new StringWriter() ;
+		template.merge(context, writer) ;
 		// TODO 5
+		// Store the outcome
+		this.storeFileInProject(packageName, className, writer) ;
 	}
 	
 	/**
@@ -48,7 +56,7 @@ public class VelocityHandler
 		final VelocityEngine velocityEngine = new VelocityEngine() ;
 
 		// TODO 6
-        
+        velocityEngine.init() ;
         return velocityEngine ;
 	}
 	
@@ -62,7 +70,12 @@ public class VelocityHandler
 		final VelocityContext context = new VelocityContext() ;
 		
 		// TODO 7
-        
+        // Store the outcome
+		context.put("now", new Date()) ;
+		context.put("packageName", packageName) ;
+		context.put("className", className) ;
+		context.put("classImports", this.generateClassImports()) ;
+		context.put("stringValues", this.generateStringValues()) ;
         return context ;
 	}
 	
@@ -74,7 +87,8 @@ public class VelocityHandler
 		final List<String> classImports = new ArrayList<String>() ;
 		
 		// TODO 8
-        
+        classImports.add("java.util.List") ;
+		classImports.add("java.util.ArrayList") ;
         return classImports ;
 	}
 	
@@ -86,7 +100,9 @@ public class VelocityHandler
         final List<String> stringValues = new ArrayList<String>() ;
         
 		// TODO 9
-        
+        // Store the outcome
+		stringValues.add("Hello") ;
+		stringValues.add("World!") ;
         return stringValues ;
 	}
 	

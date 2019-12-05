@@ -24,7 +24,11 @@ public class MySchemaOutputResolver extends SchemaOutputResolver
 	@Override
     public Result createOutput(final String namespaceURI, final String suggestedFileName) throws IOException
     {
-        // TODO 1
+		// TODO 1
+		final File file = new File(suggestedFileName) ;
+		final StreamResult result = new StreamResult(file) ;
+		result.setSystemId(file.toURI().toURL().toString()) ;
+		return result ;
     }
 
 }

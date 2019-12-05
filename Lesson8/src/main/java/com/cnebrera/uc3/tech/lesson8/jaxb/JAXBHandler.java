@@ -37,6 +37,8 @@ public class JAXBHandler
 	public JAXBHandler() throws JAXBException
 	{
 		// TODO 1
+		this.jaxbContext = JAXBContext.newInstance(StudentLessons.class);
+
 	}
 	
 	/**
@@ -48,10 +50,15 @@ public class JAXBHandler
 	public StudentLessons convertToObject(final File file) throws JAXBException, SAXException
 	{
 		// TODO 2
-		
+		final Unmarshaller jaxbUnmarshaller = this.jaxbContext.createUnmarshaller() ;
 		// TODO 3
-		
+		// Set validator
+		final SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI) ;
+		final Schema schema = sf.newSchema(new File(Constants.XSD_FILE_INPUT)) ;
+		jaxbUnmarshaller.setSchema(schema) ; 
 		// TODO 4
+		// Unmarshal the content of the file
+		return (StudentLessons) jaxbUnmarshaller.unmarshal(file) ;
 	}
 	
 	/**
@@ -62,14 +69,18 @@ public class JAXBHandler
 	public String convertToXml(final StudentLessons studentLessons) throws JAXBException
 	{
 		// TODO 5
-		
+		final Marshaller jaxbMarshaller = this.jaxbContext.createMarshaller() ;
 		// TODO 6
-
+		// Output pretty printed
+		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true) ;
 		// TODO 7
-		
+		// Output Stream
+		final OutputStream outputStream = new ByteArrayOutputStream() ;
 		// TODO 8
-		
+		// Marshal the StudentLessons object
+		jaxbMarshaller.marshal(studentLessons, outputStream) ;
 		// TODO 9
+		return outputStream.toString() ;
 	}
 	
 	/**
@@ -81,9 +92,10 @@ public class JAXBHandler
 	public void generateSchema(final String namespaceUri, final String suggestedFileName) throws IOException
 	{
 		// TODO 10
-		
+		final SchemaOutputResolver schemaOutputResolver = new MySchemaOutputResolver();
 		// TODO 11
-		
+		this.jaxbContext.generateSchema(schemaOutputResolver) ;
 		// TODO 12
+		schemaOutputResolver.createOutput(namespaceUri, suggestedFileName) ;
 	}
 }
