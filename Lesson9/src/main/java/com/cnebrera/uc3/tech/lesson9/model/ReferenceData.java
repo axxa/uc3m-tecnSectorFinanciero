@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "instrument"
@@ -17,13 +19,16 @@ public class ReferenceData {
 
     /** a int that identifies the market */
     @XmlAttribute
+    @JsonProperty(value = "market_id")
     private int marketId;
 
     /** a {@link java.lang.String} with the algorithm identifier */
     @XmlAttribute
+    @JsonProperty(value = "algorithm_identifier")
     private String algorithmIdentifier;
 
     /** a List with the Instruments information **/
+    @JsonProperty(value = "list_of_instruments")
     private List<Instrument> instrument;
 
     

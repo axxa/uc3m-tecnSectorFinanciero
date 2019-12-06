@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This class represents the instrument info
  */
@@ -14,10 +16,12 @@ public class Instrument
 {
     /** a int that identifies the instrument */
     @XmlAttribute
+    @JsonProperty(value = "instrument_id")
     private int instrumentId;
 
     /** human understood representation of the security */
     @XmlAttribute
+    @JsonProperty(value = "symbol")
     private String symbol;
 
     
