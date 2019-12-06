@@ -1,33 +1,42 @@
 package com.cnebrera.uc3.tech.lesson9.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * This class represents the instrument info
  */
-public class Instrument
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Instrument")
+public class Instrument 
 {
     /** a int that identifies the instrument */
+    @XmlAttribute
     private int instrumentId;
 
     /** human understood representation of the security */
+    @XmlAttribute
     private String symbol;
 
-
-    public int getInstrumentId()
+    
+    public int getInstrumentId() 
     {
         return instrumentId;
     }
 
-    public void setInstrumentId(int instrumentId)
+    public void setInstrumentId(int instrumentId) 
     {
         this.instrumentId = instrumentId;
     }
 
-    public String getSymbol()
+    public String getSymbol() 
     {
         return symbol;
     }
 
-    public void setSymbol(String symbol)
+    public void setSymbol(String symbol) 
     {
         this.symbol = symbol;
     }

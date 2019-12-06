@@ -1,23 +1,32 @@
 package com.cnebrera.uc3.tech.lesson9.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-/**
- * This class represents the reference of the market
- */
-public class ReferenceData
-{
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "instrument"
+})
+@XmlRootElement(name = "referenceData")
+public class ReferenceData {
 
     /** a int that identifies the market */
+    @XmlAttribute
     private int marketId;
 
     /** a {@link java.lang.String} with the algorithm identifier */
+    @XmlAttribute
     private String algorithmIdentifier;
 
     /** a List with the Instruments information **/
-    private List<Instrument> listOfInstruments;
+    private List<Instrument> instrument;
 
-
+    
     public int getMarketId()
     {
         return marketId;
@@ -40,12 +49,12 @@ public class ReferenceData
 
     public List<Instrument> getListOfInstruments()
     {
-        return listOfInstruments;
+        return instrument;
     }
 
     public void setListOfInstruments(List<Instrument> listOfInstruments)
     {
-        this.listOfInstruments = listOfInstruments;
+        this.instrument = listOfInstruments;
     }
 
     @Override
@@ -70,7 +79,7 @@ public class ReferenceData
         {
             return false;
         }
-        return listOfInstruments != null ? listOfInstruments.equals(that.listOfInstruments) : that.listOfInstruments == null;
+        return instrument != null ? instrument.equals(that.instrument) : that.instrument == null;
 
     }
 
@@ -79,7 +88,7 @@ public class ReferenceData
     {
         int result = marketId;
         result = 31 * result + (algorithmIdentifier != null ? algorithmIdentifier.hashCode() : 0);
-        result = 31 * result + (listOfInstruments != null ? listOfInstruments.hashCode() : 0);
+        result = 31 * result + (instrument != null ? instrument.hashCode() : 0);
         return result;
     }
 }
