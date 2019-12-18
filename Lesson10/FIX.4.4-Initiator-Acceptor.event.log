@@ -114,3 +114,8 @@
 20191218-12:02:15: Disconnecting: Socket exception (/127.0.0.1:10000): java.io.IOException: An existing connection was forcibly closed by the remote host
 20191218-12:02:17: Pending connection not established after 2002 ms.
 20191218-12:02:18: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-13:02:06: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-13:02:06: Created session: FIX.4.4:Initiator->Acceptor
+20191218-13:02:08: Initiated logon request
+20191218-13:02:08: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-13:02:08: Received logon

@@ -17,3 +17,12 @@
 20191218-11:59:13: Multiple logons/connections for this session are not allowed
 20191218-11:59:43: Multiple logons/connections for this session are not allowed
 20191218-12:00:13: Multiple logons/connections for this session are not allowed
+20191218-12:05:47: Session FIX.4.4:Acceptor->Initiator schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-12:05:47: Created session: FIX.4.4:Acceptor->Initiator
+20191218-12:06:08: Session FIX.4.4:Acceptor->Initiator schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-12:06:08: Created session: FIX.4.4:Acceptor->Initiator
+20191218-12:07:05: Accepting session FIX.4.4:Acceptor->Initiator from /127.0.0.1:51506
+20191218-12:07:05: Acceptor heartbeat set to 6 seconds
+20191218-12:07:05: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-12:07:05: Received logon
+20191218-12:07:05: Responding to Logon request

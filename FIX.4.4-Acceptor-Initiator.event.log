@@ -91,3 +91,11 @@
 20191218-11:11:44: Disconnecting: Socket exception (/127.0.0.1:54916): java.io.IOException: An existing connection was forcibly closed by the remote host
 20191218-11:58:29: Session FIX.4.4:Acceptor->Initiator schedule is daily, 00:00:00-UTC - 00:00:00-UTC
 20191218-11:58:29: Created session: FIX.4.4:Acceptor->Initiator
+20191218-13:01:11: Session FIX.4.4:Acceptor->Initiator schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-13:01:11: Created session: FIX.4.4:Acceptor->Initiator
+20191218-13:02:08: Accepting session FIX.4.4:Acceptor->Initiator from /127.0.0.1:51922
+20191218-13:02:08: Acceptor heartbeat set to 6 seconds
+20191218-13:02:08: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-13:02:08: Received logon
+20191218-13:02:08: Responding to Logon request
+20191218-13:02:43: Disconnecting: Socket exception (/127.0.0.1:51922): java.io.IOException: An existing connection was forcibly closed by the remote host
