@@ -1,0 +1,116 @@
+20191217-23:24:41: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191217-23:24:41: Created session: FIX.4.4:Initiator->Acceptor
+20191217-23:24:44: Pending connection not established after 2011 ms.
+20191217-23:24:45: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191217-23:25:14: Pending connection not established after 2001 ms.
+20191217-23:25:15: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191217-23:28:19: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191217-23:28:19: Created session: FIX.4.4:Initiator->Acceptor
+20191217-23:28:21: Initiated logon request
+20191217-23:28:21: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191217-23:28:21: Received logon
+20191217-23:35:42: Disconnecting: Socket exception (/127.0.0.1:10000): java.io.IOException: An existing connection was forcibly closed by the remote host
+20191217-23:35:45: Pending connection not established after 2004 ms.
+20191217-23:35:46: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-08:47:09: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-08:47:09: Session state is not current; resetting FIX.4.4:Initiator->Acceptor
+20191218-08:47:09: Created session: FIX.4.4:Initiator->Acceptor
+20191218-08:47:11: Initiated logon request
+20191218-08:47:11: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-08:47:11: Received logon
+20191218-08:53:14: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-08:53:14: Created session: FIX.4.4:Initiator->Acceptor
+20191218-08:53:16: Initiated logon request
+20191218-08:53:16: quickfix.SessionException MsgSeqNum too low, expecting 60 but received 1
+20191218-08:53:16: Disconnecting: Verifying message failed: quickfix.SessionException: MsgSeqNum too low, expecting 60 but received 1
+20191218-08:53:16: quickfix.SessionException Logon state is not valid for message (MsgType=2)
+20191218-08:53:16: Already disconnected: Verifying message failed: quickfix.SessionException: Logon state is not valid for message (MsgType=2)
+20191218-08:53:46: Initiated logon request
+20191218-08:53:46: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-08:53:46: Received logon
+20191218-08:56:24: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-08:56:24: Created session: FIX.4.4:Initiator->Acceptor
+20191218-08:56:26: Initiated logon request
+20191218-08:56:26: quickfix.SessionException MsgSeqNum too low, expecting 25 but received 1
+20191218-08:56:26: Disconnecting: Verifying message failed: quickfix.SessionException: MsgSeqNum too low, expecting 25 but received 1
+20191218-08:56:26: quickfix.SessionException Logon state is not valid for message (MsgType=2)
+20191218-08:56:26: Already disconnected: Verifying message failed: quickfix.SessionException: Logon state is not valid for message (MsgType=2)
+20191218-08:56:56: Initiated logon request
+20191218-08:56:56: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-08:56:56: Received logon
+20191218-09:00:43: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-09:00:43: Created session: FIX.4.4:Initiator->Acceptor
+20191218-09:00:45: Initiated logon request
+20191218-09:00:45: quickfix.SessionException MsgSeqNum too low, expecting 34 but received 1
+20191218-09:00:45: Disconnecting: Verifying message failed: quickfix.SessionException: MsgSeqNum too low, expecting 34 but received 1
+20191218-09:00:45: quickfix.SessionException Logon state is not valid for message (MsgType=2)
+20191218-09:00:45: Already disconnected: Verifying message failed: quickfix.SessionException: Logon state is not valid for message (MsgType=2)
+20191218-09:01:15: Initiated logon request
+20191218-09:01:15: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-09:01:15: Received logon
+20191218-10:21:24: Disconnecting: Timed out waiting for heartbeat
+20191218-10:21:25: Initiated logon request
+20191218-10:21:25: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-10:21:25: Received logon
+20191218-10:56:32: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-10:56:32: Created session: FIX.4.4:Initiator->Acceptor
+20191218-10:56:34: Initiated logon request
+20191218-10:56:34: quickfix.SessionException MsgSeqNum too low, expecting 71 but received 1
+20191218-10:56:34: Disconnecting: Verifying message failed: quickfix.SessionException: MsgSeqNum too low, expecting 71 but received 1
+20191218-10:56:34: quickfix.SessionException Logon state is not valid for message (MsgType=2)
+20191218-10:56:34: Already disconnected: Verifying message failed: quickfix.SessionException: Logon state is not valid for message (MsgType=2)
+20191218-10:57:04: Initiated logon request
+20191218-10:57:04: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-10:57:04: Received logon
+20191218-11:08:08: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-11:08:08: Created session: FIX.4.4:Initiator->Acceptor
+20191218-11:08:10: Initiated logon request
+20191218-11:08:40: Initiated logon request
+20191218-11:09:10: Initiated logon request
+20191218-11:09:40: Initiated logon request
+20191218-11:10:10: Initiated logon request
+20191218-11:10:40: Initiated logon request
+20191218-11:11:10: Initiated logon request
+20191218-11:11:40: Initiated logon request
+20191218-11:12:11: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:12:24: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-11:12:24: Created session: FIX.4.4:Initiator->Acceptor
+20191218-11:12:27: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:12:57: Pending connection not established after 2002 ms.
+20191218-11:12:58: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:13:27: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:13:57: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:14:27: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:14:57: Pending connection not established after 2001 ms.
+20191218-11:14:58: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:15:27: Pending connection not established after 2001 ms.
+20191218-11:15:28: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:15:58: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:16:28: Pending connection not established after 2001 ms.
+20191218-11:16:29: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:19:27: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-11:19:27: Created session: FIX.4.4:Initiator->Acceptor
+20191218-11:19:30: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:20:00: Pending connection not established after 2002 ms.
+20191218-11:20:01: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:20:30: Pending connection not established after 2001 ms.
+20191218-11:20:31: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:21:00: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)
+20191218-11:38:59: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-11:38:59: Created session: FIX.4.4:Initiator->Acceptor
+20191218-11:39:01: Initiated logon request
+20191218-11:39:01: quickfix.SessionException MsgSeqNum too low, expecting 148 but received 1
+20191218-11:39:01: Disconnecting: Verifying message failed: quickfix.SessionException: MsgSeqNum too low, expecting 148 but received 1
+20191218-11:39:02: quickfix.SessionException Logon state is not valid for message (MsgType=2)
+20191218-11:39:02: Already disconnected: Verifying message failed: quickfix.SessionException: Logon state is not valid for message (MsgType=2)
+20191218-11:39:31: Initiated logon request
+20191218-11:39:31: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-11:39:31: Received logon
+20191218-11:59:11: Session FIX.4.4:Initiator->Acceptor schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-11:59:11: Created session: FIX.4.4:Initiator->Acceptor
+20191218-11:59:13: Initiated logon request
+20191218-11:59:43: Initiated logon request
+20191218-12:00:13: Initiated logon request
+20191218-12:02:15: Disconnecting: Socket exception (/127.0.0.1:10000): java.io.IOException: An existing connection was forcibly closed by the remote host
+20191218-12:02:17: Pending connection not established after 2002 ms.
+20191218-12:02:18: java.net.ConnectException during connection to 127.0.0.1/127.0.0.1:10000: java.net.ConnectException: Connection refused: no further information (Next retry in 30000 milliseconds)

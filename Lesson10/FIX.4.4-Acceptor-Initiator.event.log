@@ -1,0 +1,19 @@
+20191218-11:37:47: Session FIX.4.4:Acceptor->Initiator schedule is daily, 00:00:00-UTC - 00:00:00-UTC
+20191218-11:37:47: Created session: FIX.4.4:Acceptor->Initiator
+20191218-11:39:01: Accepting session FIX.4.4:Acceptor->Initiator from /127.0.0.1:50658
+20191218-11:39:01: Acceptor heartbeat set to 6 seconds
+20191218-11:39:01: Received logon
+20191218-11:39:01: Responding to Logon request
+20191218-11:39:01: MsgSeqNum too high, expecting 1 but received 148: 8=FIX.4.49=7335=A34=14849=Initiator52=20191218-11:39:01.89856=Acceptor98=0108=610=051
+20191218-11:39:01: Enqueued at pos 148: 8=FIX.4.49=7335=A34=14849=Initiator52=20191218-11:39:01.89856=Acceptor98=0108=610=051
+20191218-11:39:01: Sent ResendRequest FROM: 1 TO: 147
+20191218-11:39:01: Received logout request: MsgSeqNum too low, expecting 148 but received 1
+20191218-11:39:01: Sent logout response
+20191218-11:39:31: Accepting session FIX.4.4:Acceptor->Initiator from /127.0.0.1:50660
+20191218-11:39:31: Acceptor heartbeat set to 6 seconds
+20191218-11:39:31: Logon contains ResetSeqNumFlag=Y, resetting sequence numbers to 1
+20191218-11:39:31: Received logon
+20191218-11:39:31: Responding to Logon request
+20191218-11:59:13: Multiple logons/connections for this session are not allowed
+20191218-11:59:43: Multiple logons/connections for this session are not allowed
+20191218-12:00:13: Multiple logons/connections for this session are not allowed
