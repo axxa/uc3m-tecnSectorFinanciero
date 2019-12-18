@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import quickfix.*;
 import quickfix.field.ApplVerID;
-import quickfix.fix42.MarketDataRequest;
+import quickfix.fix44.MarketDataRequest;
 
 import java.io.File;
 import java.io.FileInputStream;

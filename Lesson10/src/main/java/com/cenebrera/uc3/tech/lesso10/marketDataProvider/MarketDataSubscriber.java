@@ -3,6 +3,7 @@ package com.cenebrera.uc3.tech.lesso10.marketDataProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import quickfix.*;
+import quickfix.field.MDEntryPx;
 import quickfix.fix44.MarketDataIncrementalRefresh;
 
 /**
@@ -53,5 +54,8 @@ public class MarketDataSubscriber extends quickfix.fix44.MessageCracker implemen
     public void onMessage(MarketDataIncrementalRefresh message, SessionID sessionID) throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue
     {
         // TODO receive market data incremental
+        MarketDataIncrementalRefresh.NoMDEntries entries= new MarketDataIncrementalRefresh.NoMDEntries();
+        message.getGroup(1, entries);
+        LOGGER.debug("--------New message received----------- Prices [{}]", entries.get(new MDEntryPx()));
     }
 }

@@ -3,6 +3,7 @@ package com.cenebrera.uc3.tech.lesso10.marketDataProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import quickfix.*;
+import quickfix.field.MDReqID;
 import quickfix.fix44.MarketDataRequest;
 import quickfix.fix44.MessageCracker;
 /**
@@ -60,6 +61,14 @@ public class MarketDataProvider extends MessageCracker implements Application
     public void onMessage(MarketDataRequest message, SessionID sessionID)
     {
         // TODO priceReader
+        try
+        {
+            this.priceReader.start(sessionID, message.get(new MDReqID()).getValue());
+        }
+        catch (FieldNotFound fieldNotFound)
+        {
+            LOGGER.debug("Error ", fieldNotFound);
+        }
 
     }
 }

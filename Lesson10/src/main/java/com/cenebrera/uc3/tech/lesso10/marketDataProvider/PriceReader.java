@@ -2,7 +2,13 @@ package com.cenebrera.uc3.tech.lesso10.marketDataProvider;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import quickfix.Session;
 import quickfix.SessionID;
+import quickfix.SessionNotFound;
+import quickfix.field.*;
+import quickfix.fix44.MarketDataIncrementalRefresh;
+import quickfix.fix44.component.Instrument;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -105,6 +111,29 @@ public class PriceReader
         public void run()
         {
             // TODO send incremental
+            //Create the MarketDataIncrementalRefresh
+            MarketDataIncrementalRefresh incrementalRefresh = new MarketDataIncrementalRefresh();
+            incrementalRefresh.set(new MDReqID(mdReqId));
+            MarketDataIncrementalRefresh.NoMDEntries entries = new MarketDataIncrementalRefresh.NoMDEntries();
+            //Update action
+            entries.set(new MDUpdateAction('0' ));
+            //MD entry price
+            entries.set(new MDEntryPx(price ));
+            //MD entry Type
+            entries.set(new MDEntryType('2' ));
+            //Instrument
+            Instrument instrument = new Instrument();
+            instrument.set(new Symbol("BBVA"));
+            entries.set(instrument);
+            incrementalRefresh.addGroup(entries);
+            try
+            {
+                Session.sendToTarget(incrementalRefresh, this.sessionID);
+            }
+            catch (SessionNotFound sessionNotFound)
+            {
+            LOGGER.debug("Error sending message");
+            }
         }
     }
 }

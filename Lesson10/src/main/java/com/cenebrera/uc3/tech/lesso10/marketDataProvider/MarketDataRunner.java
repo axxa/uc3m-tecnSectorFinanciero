@@ -69,8 +69,7 @@ public class MarketDataRunner
         Acceptor acceptor = null;
         try
         {
-            acceptor = new SocketAcceptor
-                    (application, storeFactory, settings, logFactory, messageFactory);
+            acceptor = new SocketAcceptor(application, storeFactory, settings, logFactory, messageFactory);
             acceptor.start();
         }
         catch (ConfigError configError)
