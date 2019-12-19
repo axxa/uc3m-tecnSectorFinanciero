@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.practica12.cloud</groupId>
-	<artifactId>Lesson12</artifactId>
+	<artifactId>com.practica12.cloud.microservice_example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>com.practica12.cloud.microservice_example</name>
 	<description>Primer ejemplo de microservicio</description>

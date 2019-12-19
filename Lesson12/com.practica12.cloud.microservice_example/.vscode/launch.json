@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Application",
+            "request": "launch",
+            "mainClass": "com.practica12.cloud.microservice_example.Application",
+            "projectName": "com.practica12.cloud.microservice_example"
+        }
+    ]
+}
