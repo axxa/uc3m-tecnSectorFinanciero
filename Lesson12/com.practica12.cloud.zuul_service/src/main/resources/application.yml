@@ -1,0 +1,10 @@
+server:
+ port: 22000
+zuul:
+  routes:
+    strings:
+      path: /microservicestring/**
+      serviceId: MICROSERVICESTRING
+    locations:
+      path: /locate/**
+      serviceId: MICROSERVICE-LOCATION
