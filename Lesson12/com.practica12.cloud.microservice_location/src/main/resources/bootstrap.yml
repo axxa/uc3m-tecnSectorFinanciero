@@ -1,6 +1,6 @@
 spring:
   application:
-    name: microservicelocation
+    name: microservice-location
   cloud:
     config:
       enabled: true
