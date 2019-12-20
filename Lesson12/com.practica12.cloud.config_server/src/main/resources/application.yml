@@ -1,13 +1,12 @@
 server:
  port: 8888
 spring:
- cloud:
-  config:
-    server:
-      git:
-        uri: https://github.com/gorrochablan/mastercloud-practica12
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gorrochablan/mastercloud-practica12
 security:
   user:
     name: practica12
     password: mysecret
-

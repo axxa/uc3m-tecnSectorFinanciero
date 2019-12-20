@@ -8,13 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication
 @EnableConfigServer
 @Configuration
-public class Application
-{
- /**
- * Metodo principal para arrancar el config server
- * @param args
- */
-	public static void main(String[] args){
+public class Application {
+
+	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+
 }
