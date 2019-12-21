@@ -1,0 +1,31 @@
+Set databases
+	geth --networkid 12342 --datadir ./chaindata init ./genesis.json
+
+Create ethereum account
+	geth account new --datadir ./chaindata
+	
+Remove genesis block
+	geth removedb --datadir ./chaindata
+Recreate DB
+	geth --networkid 12342 --datadir ./chaindata init ./genesis_2.json
+Eth node execution
+	geth --identity "Practica13" --networkid 12342 --datadir ./chaindata --nodiscover –rpc --allow-insecure-unlock
+	
+	
+ 
+Connect through IPC to the node
+	geth attach ipc:\\.\pipe\geth.ipc
+
+--In the node shell
+	
+	Get accs info
+		eth.accounts
+	Get eth amount
+		web3.fromWei(eth.getBalance(eth.accounts[0]), "ether")
+	
+	Transaction
+		var sender = eth.accounts[0]
+		personal.unlockAccount(sender)
+		var receiver = "0xa6246b33b002F0C4C5E3e87CC4a590441C1D0e7e" 	--> my metamask acc
+		var amount = web3.toWei(1, "ether")
+		eth.sendTransaction({from:sender, to:receiver, value: amount})
