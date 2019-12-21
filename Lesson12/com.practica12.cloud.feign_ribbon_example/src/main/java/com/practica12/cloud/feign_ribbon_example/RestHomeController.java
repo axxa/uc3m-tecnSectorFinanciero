@@ -9,6 +9,17 @@ public class RestHomeController
 {
     @Autowired
     private StringClient stringClient;
+    @Autowired
+    private PhraseRetriever phraseRetriever;
+    
+    @RequestMapping("/test_hystrix")
+    public String printHystrixPhrase()
+    {
+        String results = phraseRetriever.home() + " I'm at HYSTRIX " +
+        phraseRetriever.geoInfo();
+        return results;
+    }
+
     @RequestMapping("/")
     public String printPhrase()
     {
